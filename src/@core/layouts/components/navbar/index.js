@@ -26,7 +26,7 @@ const ThemeNavbar = (props) => {
   return (
     <Fragment>
       <div className="bookmark-wrapper d-flex align-items-center">
-        <ul className="navbar-nav d-xl-none">
+        {/* <ul className="navbar-nav d-xl-none">
           <NavItem className="mobile-menu me-auto">
             <NavLink
               className="nav-menu-main menu-toggle hidden-xs is-active"
@@ -40,7 +40,7 @@ const ThemeNavbar = (props) => {
           <NavLink className="nav-link-style">
             <ThemeToggler />
           </NavLink>
-        </NavItem>
+        </NavItem> */}
       </div>
       <NavbarUser skin={skin} setSkin={setSkin} />
     </Fragment>
