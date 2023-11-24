@@ -39,6 +39,14 @@ import { useNavbarColor } from "@hooks/useNavbarColor";
 // ** Styles
 import "@styles/base/core/menu/menu-types/vertical-menu.scss";
 import "@styles/base/core/menu/menu-types/vertical-overlay-menu.scss";
+import {sidebarTogglerr} from "../../recoil/atoms";
+import { useRecoilState} from "recoil";
+import { atom } from "recoil";
+
+export const sidebarToggler = atom({
+  key: 'sidebarToggler',
+  default: false, 
+});
 
 const VerticalLayout = (props) => {
   // ** Props
@@ -52,10 +60,19 @@ const VerticalLayout = (props) => {
   const { navbarColor, setNavbarColor } = useNavbarColor();
   const { layout, setLayout, setLastLayout } = useLayout();
 
+ 
+
+  // const sideToggle = useRecoilValue(sidebarToggler)
+
+  // console.log("sideToggle",sideToggle);
+
+  
   // ** States
   const [isMounted, setIsMounted] = useState(false);
-  const [menuVisibility, setMenuVisibility] = useState(false);
+  const [menuVisibility, setMenuVisibility] = useRecoilState(sidebarToggler);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  console.log("menuVisibility",menuVisibility);
 
   // ** Vars
   const dispatch = useDispatch();
