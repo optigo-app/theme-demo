@@ -5,42 +5,43 @@ import { faker } from '@faker-js/faker';
 const SecondPage = () => {
 
   const columns = [
-    { field: 'col1', headerName: 'Column 1', width: 150 },
-    { field: 'col2', headerName: 'Column 2', width: 150 },
+    { field: 'id', headerName: 'id', width: 150 },
+    { field: 'firstName', headerName:'firstName', width: 150 },
+    { field: 'lastName', headerName: 'lastName', width: 150 },
+    { field: 'email', headerName:'email', width: 150 },
+    { field: 'age', headerName: 'age', width: 150 },
+    { field: 'joinDate', headerName: 'joinDate', width: 150 },
+    { field: 'city', headerName: 'city', width: 150 },
+    { field: 'company', headerName:'company', width: 150 },
+    { field: 'country', headerName:'country', width: 150 },
+    { field: 'department', headerName:'department', width: 150 },
+    { field: 'phoneIMEI', headerName: 'phoneIMEI', width: 150 },
+    { field: 'project', headerName: 'project', width: 150 },
+    { field: 'role', headerName: 'role', width: 150 },
+    { field: 'state', headerName: 'state', width: 150 },
+    { field: 'street', headerName: 'street', width: 150 },
+    { field: 'zipCode', headerName: 'zipCode', width: 150 },
   ];
 
-  const rows = [
-    { id: 1, col1: 'Hello', col2: 'World' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing' },
-
-  ];
-
-  const [currentCal, setCuurentcCal] = useState(columns);
-
-  const handleCallOrdr = (newColum) => {
-    setCuurentcCal(newColum);
-  }
 
   const generateFakeUsers = (count) => {
     const users = [];
     for (let i = 0; i < count; i++) {
       const user = {
+        id: Math.floor(1000 + Math.random() * 9000),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
-        phoneNumber: faker.phone,
+        phoneIMEI: faker.phone.imei(),
         joinDate: faker.date.past().toISOString(),
         role: faker.name.jobTitle(),
         project: faker.random.word(),
         company: faker.company.name(),
-        address: {
-          street: faker.address.streetAddress(),
-          city: faker.address.city(),
-          state: faker.address.state(),
-          country: faker.address.country(),
-          zipCode: faker.address.zipCode(),
-        },
+        street: faker.address.streetAddress(),
+        city: faker.address.city(),
+        state: faker.address.state(),
+        country: faker.address.country(),
+        zipCode: faker.address.zipCode(),
         department: faker.commerce.department(),
         age: faker.datatype.number({ min: 18, max: 80 }),
       };
@@ -52,40 +53,32 @@ const SecondPage = () => {
   const numberOfUsers = 200; // Change this number to generate more users
   const fakeUsers = generateFakeUsers(numberOfUsers);
 
-  console.log("faker",fakeUsers);
+  const handleCallOrdr = (newColum) => {
+    setCuurentcCal(newColum);
+  }
+
 
   return (
     <div>
       <div style={{ boxShadow: '0 4px 24px 0 rgba(34, 41, 47, 0.1)' }}>
         <DataGrid
           checkboxSelection={true}
-          pageSizeOptions={[5, 10, 15]}
+          pageSizeOptions={[10,20,50,100]}
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 10,
               },
             },
           }}
-          rows={rows}
-          columns={currentCal}
+          rows={fakeUsers}
+          columns={columns}
           onColumnOrderChange={handleCallOrdr}
           components={{
             Toolbar: GridToolbar
           }}
         />
       </div>
-      {/* <CardHeader>
-        <CardTitle>Create Data Grid 🙌</CardTitle>
-      </CardHeader>
-      <CardBody>
-        <CardText>This is your second page.</CardText>
-        <CardText>
-          Chocolate sesame snaps pie carrot cake pastry pie lollipop muffin.
-          Carrot cake dragée chupa chups jujubes. Macaroon liquorice cookie
-          wafer tart marzipan bonbon. Gingerbread jelly-o dragée chocolate.
-        </CardText>
-      </CardBody> */}
     </div>
   );
 };
