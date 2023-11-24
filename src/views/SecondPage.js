@@ -1,6 +1,6 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useState } from "react";
-import { Card, CardHeader, CardBody, CardTitle, CardText } from "reactstrap";
+import { faker } from '@faker-js/faker';
 
 const SecondPage = () => {
 
@@ -21,6 +21,38 @@ const SecondPage = () => {
   const handleCallOrdr = (newColum) => {
     setCuurentcCal(newColum);
   }
+
+  const generateFakeUsers = (count) => {
+    const users = [];
+    for (let i = 0; i < count; i++) {
+      const user = {
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        phoneNumber: faker.phone,
+        joinDate: faker.date.past().toISOString(),
+        role: faker.name.jobTitle(),
+        project: faker.random.word(),
+        company: faker.company.name(),
+        address: {
+          street: faker.address.streetAddress(),
+          city: faker.address.city(),
+          state: faker.address.state(),
+          country: faker.address.country(),
+          zipCode: faker.address.zipCode(),
+        },
+        department: faker.commerce.department(),
+        age: faker.datatype.number({ min: 18, max: 80 }),
+      };
+      users.push(user);
+    }
+    return users;
+  };
+  
+  const numberOfUsers = 200; // Change this number to generate more users
+  const fakeUsers = generateFakeUsers(numberOfUsers);
+
+  console.log("faker",fakeUsers);
 
   return (
     <div>
