@@ -4,7 +4,7 @@ const SecondPage = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Create Awesome 🙌</CardTitle>
+        <CardTitle>Create Data Grid 🙌</CardTitle>
       </CardHeader>
       <CardBody>
         <CardText>This is your second page.</CardText>
