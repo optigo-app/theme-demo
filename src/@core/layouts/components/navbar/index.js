@@ -9,8 +9,15 @@ import { Sun, Moon, Menu } from "react-feather";
 
 // ** Reactstrap Imports
 import { NavItem, NavLink } from "reactstrap";
+import { sidebarToggler } from "../../VerticalLayout";
+import { useSetRecoilState } from "recoil";
+import { IoMdMenu } from "react-icons/io";
 
 const ThemeNavbar = (props) => {
+  
+  const setFlag = useSetRecoilState(sidebarToggler);
+
+
   // ** Props
   const { skin, setSkin, setMenuVisibility } = props;
 
@@ -22,6 +29,7 @@ const ThemeNavbar = (props) => {
       return <Moon className="ficon" onClick={() => setSkin("dark")} />;
     }
   };
+
 
   return (
     <Fragment>
@@ -41,6 +49,9 @@ const ThemeNavbar = (props) => {
             <ThemeToggler />
           </NavLink>
         </NavItem> */}
+       {window.innerWidth < 1199 && <div onClick={()=>setFlag((prev)=>!prev)}>
+        <IoMdMenu style={{fontSize:'30px'}}/>
+        </div>}
       </div>
       <NavbarUser skin={skin} setSkin={setSkin} />
     </Fragment>
